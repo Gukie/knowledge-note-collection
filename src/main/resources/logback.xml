@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+    <appender name="PROJECT-DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log\debug.log</file>
+        <encoding>utf-8</encoding>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>debug.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+        	<level>DEBUG</level>
+        	<onMatch>ACCEPT</onMatch>
+        	<onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <appender name="PROJECT-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log\info.log</file>
+        <encoding>utf-8</encoding>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>info.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+        	<level>INFO</level>
+        	<onMatch>ACCEPT</onMatch>
+        	<onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <appender name="PROJECT-WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log\warn.log</file>
+        <encoding>utf-8</encoding>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>warn.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+        	<level>WARN</level>
+        	<onMatch>ACCEPT</onMatch>
+        	<onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+	<appender name="PROJECT-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log\error.log</file>
+        <encoding>utf-8</encoding>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>error.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+        	<level>ERROR</level>
+        	<onMatch>ACCEPT</onMatch>
+        	<onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    
+    <appender name="SPRING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log\spring.log</file>
+        <encoding>utf-8</encoding>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>spring.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+        	<level>ERROR</level>
+        	<onMatch>ACCEPT</onMatch>
+        	<onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    
+
+    <!-- ===================================================================== -->
+    <!--  logger definition                                                    -->
+    <!-- ===================================================================== -->
+    <logger name="org.springframework.jdbc" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="SPRING" />
+    </logger>
+
+    <root>
+        <level value="debug" />
+        <appender-ref ref="PROJECT-DEBUG" />
+        <appender-ref ref="PROJECT-INFO"/>
+        <appender-ref ref="PROJECT-WARN"/>
+        <appender-ref ref="PROJECT-ERROR"/>
+    </root>
+</configuration>
