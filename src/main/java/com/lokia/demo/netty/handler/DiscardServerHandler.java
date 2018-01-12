@@ -16,22 +16,22 @@ public class DiscardServerHandler extends ChannelHandlerAdapter {
 		System.out.println("received msg:"+msg);
 		logger.debug("received msg:{}",msg);
 		if(msg instanceof ByteBuf){
-//			PooledByteBuf bytess = msg;
-//			String msgStr = new String(bytes);
-//			System.out.println("received msg:"+msgStr);
-//			logger.debug("received msg:{}",msgStr);
-//			ByteBuf buf = (ByteBuf) msg;
-//			byte[] bytes = new byte[buf.capacity()];
-//			buf.readBytes(bytes);
-//			String msgStr = new String(bytes);
-			
-			ByteBuf buf = (ByteBuf) msg;
-			String msgStr = buf.toString();
+			String msgStr =getMsgStr((ByteBuf)msg);
 			System.out.println("received msg:"+msgStr);
 			logger.debug("received msg:{}",msgStr);
 		}
-		
-		
+	}
+
+	private String getMsgStr(ByteBuf buf) {
+		int size = buf.readableBytes();
+		byte[] bytes = new byte[size];
+		int index = 0;
+		while(buf.readableBytes()>0){
+			byte bt = buf.readByte();
+			bytes[index] = bt;
+			index++;
+		}
+		return new String(bytes);
 	}
 	
 	@Override
