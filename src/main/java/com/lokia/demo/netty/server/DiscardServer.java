@@ -1,6 +1,7 @@
 package com.lokia.demo.netty.server;
 
 import com.lokia.demo.netty.handler.DiscardServerHandler;
+import com.lokia.demo.netty.handler.TimeServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -39,7 +40,7 @@ public class DiscardServer {
 
 			@Override
 			protected void initChannel(SocketChannel ch) throws Exception {
-				ch.pipeline().addLast(new DiscardServerHandler());
+				ch.pipeline().addLast(new DiscardServerHandler(),new TimeServerHandler());
 			}
 		});
 		serverBootstrap.option(ChannelOption.SO_BACKLOG, 128);
